@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
 });
 
 app.post("/transcribe", upload.single("file"), (req, res) => {
-  console.log(OPEN_API_KEY)
+ 
   const filePath = req.file.path;
 
   const formData = new FormData();
@@ -49,12 +49,11 @@ app.post("/transcribe", upload.single("file"), (req, res) => {
       },
     })
     .then((response) => {
-      console.log(response.data);
       const transcriptions = response.data;
-      console.log(transcriptions, "ggg")
+
       if (transcriptions) {
         const transcript = transcriptions.text;
-        console.log(transcript, "transcript")
+
         res.json({ transcription: transcript });
       } else {
         res.status(404).json({ error: "No transcriptions found." });
@@ -62,7 +61,9 @@ app.post("/transcribe", upload.single("file"), (req, res) => {
     })
     .catch((error) => {
       console.log(error);
-      res.status(500).json({ error: "An error occurred during transcription." });
+      res
+        .status(500)
+        .json({ error: "An error occurred during transcription." });
     });
 });
 

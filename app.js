@@ -7,7 +7,7 @@ const FormData = require("form-data");
 const multer = require("multer");
 
 const app = express();
-const port = 3002;
+const port = 3000;
 
 const OPEN_API_KEY = process.env.OPEN_API_KEY;
 
